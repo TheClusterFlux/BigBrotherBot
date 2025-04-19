@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: BigBrotherBot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: BigBrotherBot
+  template:
+    metadata:
+      labels:
+        app: BigBrotherBot
+    spec:
+      containers:
+        - name: BigBrotherBot
+          image: docker.io/keanuwatts/theclusterflux:BigBrotherBot
+          imagePullPolicy: Always
+          env:
+            - name: SQLITE_SERVICE_URL
+              value: "http://sqlite-service:8080"
+            - name: DISCORD_BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: discord-bot-token
+                  key: token
+      imagePullSecrets:
+        - name: dockerhub-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: BigBrotherBot
+spec:
+  selector:
+    app: BigBrotherBot
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
