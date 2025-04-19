@@ -22,7 +22,7 @@ spec:
             - name: DISCORD_BOT_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: discord-bot-token
+                  name: big-brother-discord-bot-token
                   key: token
       imagePullSecrets:
         - name: dockerhub-secret
