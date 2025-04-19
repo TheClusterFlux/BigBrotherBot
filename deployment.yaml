@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: BigBrotherBot
+  name: big-brother-bot
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: BigBrotherBot
+      app: big-brother-bot
   template:
     metadata:
       labels:
-        app: BigBrotherBot
+        app: big-brother-bot
     spec:
       containers:
-        - name: BigBrotherBot
-          image: docker.io/keanuwatts/theclusterflux:BigBrotherBot
+        - name: big-brother-bot
+          image: docker.io/keanuwatts/theclusterflux:big-brother-bot
           imagePullPolicy: Always
           env:
             - name: SQLITE_SERVICE_URL
@@ -30,10 +30,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: BigBrotherBot
+  name: big-brother-bot
 spec:
   selector:
-    app: BigBrotherBot
+    app: big-brother-bot
   ports:
     - protocol: TCP
       port: 8080
