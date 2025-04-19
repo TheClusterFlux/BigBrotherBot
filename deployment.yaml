@@ -18,7 +18,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: SQLITE_SERVICE_URL
-              value: "http://sqlite-service:8080"
+              value: "http://sqlite:8080"
             - name: DISCORD_BOT_TOKEN
               valueFrom:
                 secretKeyRef:
